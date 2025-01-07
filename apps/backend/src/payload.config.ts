@@ -7,12 +7,15 @@ import { buildConfig } from "payload/config";
 
 // Collections
 
+import Pages from "./collections/Pages";
+import Media from "./collections/Media";
+
 export default buildConfig({
   admin: {
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [],
+  collections: [Pages, Media],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
     declare: false,

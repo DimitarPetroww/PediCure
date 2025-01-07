@@ -8,9 +8,9 @@
 
 export interface Config {
   collections: {
+    pages: Page;
+    media: Media;
     users: User;
-    blogs: Blog;
-    photos: Photo;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -18,49 +18,58 @@ export interface Config {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "pages".
  */
-export interface User {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogs".
- */
-export interface Blog {
+export interface Page {
   id: string;
   title: string;
-  coverPhoto: string | Photo;
   slug: string;
-  excerpt: string;
-  content: {
-    [k: string]: unknown;
-  }[];
-  status?: ('draft' | 'published') | null;
+  blocks?:
+    | (
+        | {
+            backgroundImage?: string | Media | null;
+            heading?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            subheading?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            button?: {
+              label?: string | null;
+              url?: string | null;
+              type?: ('primary' | 'secondary' | 'link') | null;
+              customClass?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'banner';
+          }
+        | {
+            button?: {
+              label?: string | null;
+              url?: string | null;
+              type?: ('primary' | 'secondary' | 'link') | null;
+              customClass?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'buttons';
+          }
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "photos".
+ * via the `definition` "media".
  */
-export interface Photo {
+export interface Media {
   id: string;
-  title: string;
-  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -71,6 +80,23 @@ export interface Photo {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

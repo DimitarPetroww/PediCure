@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="min-h-screen bg-base-300">
+        <main>
           {children}
         </main>
         <Next13NProgress height={7} color="#29D" />
