@@ -1,0 +1,17 @@
+{
+  "name": "pedicure",
+  "private": true,
+  "scripts": {
+    "start": "turbo run dev"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.3.3",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "npm@10.2.3",
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": ["apps/*"]
+}
