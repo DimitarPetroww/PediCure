@@ -8,14 +8,18 @@ export const GET_PAGE = gql`
                 title
                 blocks {
                     ... on Banner {
+                        id
                         backgroundImage {
                             url
+                            fullUrl
                         }
                         heading
                         subheading
                         button {
                             label
                             url
+                            type
+                            customClass
                         }
                     }
                 }

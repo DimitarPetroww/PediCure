@@ -1,14 +1,18 @@
-import { getPage } from "@/lib/pages/pages";
 import React from "react";
 
-export default async function HomePage() {
-  const data = await getPage('home');
+import Block from "@/components/Block/Block";
+import { getPage, PageResponse } from "@/lib/pages";
 
-  console.log(data[0].blocks[0].heading)
+export default async function HomePage() {
+  const { data }: PageResponse = await getPage('home');
+
+  console.log(data[0].blocks[0]);
 
   return (
     <div>
-      ti eba maikata
+      {data[0].blocks?.map(block => 
+        <Block {...block} key={block?.id}/>
+      )}
     </div>
   );
 }

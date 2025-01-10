@@ -1,21 +1,34 @@
 import { CTAType } from "./cta";
+import { Media } from "./payload-types";
 
-interface ButtonField {
+export interface ButtonField {
     label: string;
     url: string;
     type: CTAType;
     customClass: string;
 }
 
-export interface ButtonsBlock {
+export interface RichText {
+    type: string;
+    children: RichText[];
+    bold?: boolean;
+    italic?: boolean;
+    code?: boolean;
+    url?: string;
+}
+
+export interface Block {
+    id: string;
+    __typename: string;
+}
+
+export interface ButtonsBlock extends Block {
     button: ButtonField;
 }
 
-export interface BannerBlock {
-    backgroundImage: string;
-    heading: string;
-    subheading: string;
+export interface BannerBlock extends Block {
+    backgroundImage: Media;
+    heading: RichText[];
+    subheading: RichText[];
     button: ButtonField;
 }
-
-export type Block = BannerBlock | ButtonsBlock; 

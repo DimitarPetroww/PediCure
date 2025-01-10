@@ -70,6 +70,7 @@ export interface Page {
  */
 export interface Media {
   id: string;
+  fullUrl?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
