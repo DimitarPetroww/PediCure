@@ -14,7 +14,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    header: Header;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -28,6 +30,7 @@ export interface Page {
     | (
         | {
             backgroundImage?: string | Media | null;
+            mobileBackgroundImage?: string | Media | null;
             heading?:
               | {
                   [k: string]: unknown;
@@ -132,4 +135,22 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  phone: {
+    label: string;
+    value: string;
+  };
+  address: {
+    label: string;
+    value: string;
+  };
+  facebookLink: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }

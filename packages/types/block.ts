@@ -28,6 +28,7 @@ export interface ButtonsBlock extends Block {
 
 export interface BannerBlock extends Block {
     backgroundImage: Media;
+    mobileBackgroundImage: Media;
     heading: RichText[];
     subheading: RichText[];
     button: ButtonField;

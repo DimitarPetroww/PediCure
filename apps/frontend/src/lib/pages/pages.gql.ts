@@ -13,6 +13,10 @@ export const GET_PAGE = gql`
                             url
                             fullUrl
                         }
+                        mobileBackgroundImage {
+                            url
+                            fullUrl
+                        }
                         heading
                         subheading
                         button {

@@ -10,12 +10,16 @@ import { buildConfig } from "payload/config";
 import Pages from "./collections/Pages";
 import Media from "./collections/Media";
 
+//Globals
+import Header from "./globals/Header";
+
 export default buildConfig({
   admin: {
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
   collections: [Pages, Media],
+  globals: [Header],
   typescript: {
     outputFile: path.resolve(__dirname, "../../../packages/types/payload-types.ts"),
     declare: false,

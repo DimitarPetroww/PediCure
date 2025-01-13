@@ -1,5 +1,21 @@
+@import '../../scss/variables.scss';
+
 .banner {
     height: 100vh;
     background-position: center;
     background-size: cover;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__heading {
+        font-size: 100px;
+        color: $color-white;
+    }
+
+    &__subheading {
+        font-size: 80px;
+        color: $color-primary;
+    }
 }

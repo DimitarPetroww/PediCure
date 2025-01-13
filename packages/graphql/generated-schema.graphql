@@ -17,6 +17,8 @@ type Query {
   PayloadPreferences(where: PayloadPreference_where, limit: Int, page: Int, sort: String): PayloadPreferences
   countPayloadPreferences(where: PayloadPreference_where): countPayloadPreferences
   docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
+  Header(draft: Boolean): Header
+  docAccessHeader: headerDocAccess
   Access: Access
 }
 
@@ -33,6 +35,7 @@ union Page_Blocks = Banner | Buttons
 
 type Banner {
   backgroundImage(where: Banner_BackgroundImage_where): Media
+  mobileBackgroundImage(where: Banner_MobileBackgroundImage_where): Media
   heading(depth: Int): JSON
   subheading(depth: Int): JSON
   button: Banner_Button
@@ -43,6 +46,7 @@ type Banner {
 
 type Media {
   id: String
+  fullUrl: String
   updatedAt: DateTime
   createdAt: DateTime
   url: String
@@ -61,6 +65,7 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 input Banner_BackgroundImage_where {
+  fullUrl: Banner_BackgroundImage_fullUrl_operator
   updatedAt: Banner_BackgroundImage_updatedAt_operator
   createdAt: Banner_BackgroundImage_createdAt_operator
   url: Banner_BackgroundImage_url_operator
@@ -74,6 +79,17 @@ input Banner_BackgroundImage_where {
   id: Banner_BackgroundImage_id_operator
   AND: [Banner_BackgroundImage_where_and]
   OR: [Banner_BackgroundImage_where_or]
+}
+
+input Banner_BackgroundImage_fullUrl_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Banner_BackgroundImage_updatedAt_operator {
@@ -193,6 +209,7 @@ input Banner_BackgroundImage_id_operator {
 }
 
 input Banner_BackgroundImage_where_and {
+  fullUrl: Banner_BackgroundImage_fullUrl_operator
   updatedAt: Banner_BackgroundImage_updatedAt_operator
   createdAt: Banner_BackgroundImage_createdAt_operator
   url: Banner_BackgroundImage_url_operator
@@ -209,6 +226,7 @@ input Banner_BackgroundImage_where_and {
 }
 
 input Banner_BackgroundImage_where_or {
+  fullUrl: Banner_BackgroundImage_fullUrl_operator
   updatedAt: Banner_BackgroundImage_updatedAt_operator
   createdAt: Banner_BackgroundImage_createdAt_operator
   url: Banner_BackgroundImage_url_operator
@@ -222,6 +240,184 @@ input Banner_BackgroundImage_where_or {
   id: Banner_BackgroundImage_id_operator
   AND: [Banner_BackgroundImage_where_and]
   OR: [Banner_BackgroundImage_where_or]
+}
+
+input Banner_MobileBackgroundImage_where {
+  fullUrl: Banner_MobileBackgroundImage_fullUrl_operator
+  updatedAt: Banner_MobileBackgroundImage_updatedAt_operator
+  createdAt: Banner_MobileBackgroundImage_createdAt_operator
+  url: Banner_MobileBackgroundImage_url_operator
+  filename: Banner_MobileBackgroundImage_filename_operator
+  mimeType: Banner_MobileBackgroundImage_mimeType_operator
+  filesize: Banner_MobileBackgroundImage_filesize_operator
+  width: Banner_MobileBackgroundImage_width_operator
+  height: Banner_MobileBackgroundImage_height_operator
+  focalX: Banner_MobileBackgroundImage_focalX_operator
+  focalY: Banner_MobileBackgroundImage_focalY_operator
+  id: Banner_MobileBackgroundImage_id_operator
+  AND: [Banner_MobileBackgroundImage_where_and]
+  OR: [Banner_MobileBackgroundImage_where_or]
+}
+
+input Banner_MobileBackgroundImage_fullUrl_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Banner_MobileBackgroundImage_where_and {
+  fullUrl: Banner_MobileBackgroundImage_fullUrl_operator
+  updatedAt: Banner_MobileBackgroundImage_updatedAt_operator
+  createdAt: Banner_MobileBackgroundImage_createdAt_operator
+  url: Banner_MobileBackgroundImage_url_operator
+  filename: Banner_MobileBackgroundImage_filename_operator
+  mimeType: Banner_MobileBackgroundImage_mimeType_operator
+  filesize: Banner_MobileBackgroundImage_filesize_operator
+  width: Banner_MobileBackgroundImage_width_operator
+  height: Banner_MobileBackgroundImage_height_operator
+  focalX: Banner_MobileBackgroundImage_focalX_operator
+  focalY: Banner_MobileBackgroundImage_focalY_operator
+  id: Banner_MobileBackgroundImage_id_operator
+  AND: [Banner_MobileBackgroundImage_where_and]
+  OR: [Banner_MobileBackgroundImage_where_or]
+}
+
+input Banner_MobileBackgroundImage_where_or {
+  fullUrl: Banner_MobileBackgroundImage_fullUrl_operator
+  updatedAt: Banner_MobileBackgroundImage_updatedAt_operator
+  createdAt: Banner_MobileBackgroundImage_createdAt_operator
+  url: Banner_MobileBackgroundImage_url_operator
+  filename: Banner_MobileBackgroundImage_filename_operator
+  mimeType: Banner_MobileBackgroundImage_mimeType_operator
+  filesize: Banner_MobileBackgroundImage_filesize_operator
+  width: Banner_MobileBackgroundImage_width_operator
+  height: Banner_MobileBackgroundImage_height_operator
+  focalX: Banner_MobileBackgroundImage_focalX_operator
+  focalY: Banner_MobileBackgroundImage_focalY_operator
+  id: Banner_MobileBackgroundImage_id_operator
+  AND: [Banner_MobileBackgroundImage_where_and]
+  OR: [Banner_MobileBackgroundImage_where_or]
 }
 
 """
@@ -534,6 +730,7 @@ type allMedia {
 }
 
 input Media_where {
+  fullUrl: Media_fullUrl_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -547,6 +744,17 @@ input Media_where {
   id: Media_id_operator
   AND: [Media_where_and]
   OR: [Media_where_or]
+}
+
+input Media_fullUrl_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Media_updatedAt_operator {
@@ -666,6 +874,7 @@ input Media_id_operator {
 }
 
 input Media_where_and {
+  fullUrl: Media_fullUrl_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -682,6 +891,7 @@ input Media_where_and {
 }
 
 input Media_where_or {
+  fullUrl: Media_fullUrl_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -710,6 +920,7 @@ type mediaDocAccess {
 }
 
 type MediaDocAccessFields {
+  fullUrl: MediaDocAccessFields_fullUrl
   updatedAt: MediaDocAccessFields_updatedAt
   createdAt: MediaDocAccessFields_createdAt
   url: MediaDocAccessFields_url
@@ -720,6 +931,29 @@ type MediaDocAccessFields {
   height: MediaDocAccessFields_height
   focalX: MediaDocAccessFields_focalX
   focalY: MediaDocAccessFields_focalY
+}
+
+type MediaDocAccessFields_fullUrl {
+  create: MediaDocAccessFields_fullUrl_Create
+  read: MediaDocAccessFields_fullUrl_Read
+  update: MediaDocAccessFields_fullUrl_Update
+  delete: MediaDocAccessFields_fullUrl_Delete
+}
+
+type MediaDocAccessFields_fullUrl_Create {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_fullUrl_Read {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_fullUrl_Update {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_fullUrl_Delete {
+  permission: Boolean!
 }
 
 type MediaDocAccessFields_updatedAt {
@@ -1505,12 +1739,274 @@ type PayloadPreferencesDeleteDocAccess {
   where: JSONObject
 }
 
+type Header {
+  phone: Header_Phone
+  address: Header_Address
+  facebookLink: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Header_Phone {
+  label: String
+  value: String
+}
+
+type Header_Address {
+  label: String
+  value: String
+}
+
+type headerDocAccess {
+  fields: HeaderDocAccessFields
+  read: HeaderReadDocAccess
+  update: HeaderUpdateDocAccess
+}
+
+type HeaderDocAccessFields {
+  phone: HeaderDocAccessFields_phone
+  address: HeaderDocAccessFields_address
+  facebookLink: HeaderDocAccessFields_facebookLink
+  updatedAt: HeaderDocAccessFields_updatedAt
+  createdAt: HeaderDocAccessFields_createdAt
+}
+
+type HeaderDocAccessFields_phone {
+  create: HeaderDocAccessFields_phone_Create
+  read: HeaderDocAccessFields_phone_Read
+  update: HeaderDocAccessFields_phone_Update
+  delete: HeaderDocAccessFields_phone_Delete
+  fields: HeaderDocAccessFields_phone_Fields
+}
+
+type HeaderDocAccessFields_phone_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_Fields {
+  label: HeaderDocAccessFields_phone_label
+  value: HeaderDocAccessFields_phone_value
+}
+
+type HeaderDocAccessFields_phone_label {
+  create: HeaderDocAccessFields_phone_label_Create
+  read: HeaderDocAccessFields_phone_label_Read
+  update: HeaderDocAccessFields_phone_label_Update
+  delete: HeaderDocAccessFields_phone_label_Delete
+}
+
+type HeaderDocAccessFields_phone_label_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_label_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_label_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_value {
+  create: HeaderDocAccessFields_phone_value_Create
+  read: HeaderDocAccessFields_phone_value_Read
+  update: HeaderDocAccessFields_phone_value_Update
+  delete: HeaderDocAccessFields_phone_value_Delete
+}
+
+type HeaderDocAccessFields_phone_value_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_value_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_value_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_phone_value_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address {
+  create: HeaderDocAccessFields_address_Create
+  read: HeaderDocAccessFields_address_Read
+  update: HeaderDocAccessFields_address_Update
+  delete: HeaderDocAccessFields_address_Delete
+  fields: HeaderDocAccessFields_address_Fields
+}
+
+type HeaderDocAccessFields_address_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_Fields {
+  label: HeaderDocAccessFields_address_label
+  value: HeaderDocAccessFields_address_value
+}
+
+type HeaderDocAccessFields_address_label {
+  create: HeaderDocAccessFields_address_label_Create
+  read: HeaderDocAccessFields_address_label_Read
+  update: HeaderDocAccessFields_address_label_Update
+  delete: HeaderDocAccessFields_address_label_Delete
+}
+
+type HeaderDocAccessFields_address_label_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_label_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_label_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_value {
+  create: HeaderDocAccessFields_address_value_Create
+  read: HeaderDocAccessFields_address_value_Read
+  update: HeaderDocAccessFields_address_value_Update
+  delete: HeaderDocAccessFields_address_value_Delete
+}
+
+type HeaderDocAccessFields_address_value_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_value_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_value_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_address_value_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_facebookLink {
+  create: HeaderDocAccessFields_facebookLink_Create
+  read: HeaderDocAccessFields_facebookLink_Read
+  update: HeaderDocAccessFields_facebookLink_Update
+  delete: HeaderDocAccessFields_facebookLink_Delete
+}
+
+type HeaderDocAccessFields_facebookLink_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_facebookLink_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_facebookLink_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_facebookLink_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_updatedAt {
+  create: HeaderDocAccessFields_updatedAt_Create
+  read: HeaderDocAccessFields_updatedAt_Read
+  update: HeaderDocAccessFields_updatedAt_Update
+  delete: HeaderDocAccessFields_updatedAt_Delete
+}
+
+type HeaderDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_createdAt {
+  create: HeaderDocAccessFields_createdAt_Create
+  read: HeaderDocAccessFields_createdAt_Read
+  update: HeaderDocAccessFields_createdAt_Update
+  delete: HeaderDocAccessFields_createdAt_Delete
+}
+
+type HeaderDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type HeaderReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type HeaderUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Access {
   canAccessAdmin: Boolean!
   pages: pagesAccess
   media: mediaAccess
   users: usersAccess
   payload_preferences: payload_preferencesAccess
+  header: headerAccess
 }
 
 type pagesAccess {
@@ -1673,6 +2169,7 @@ type mediaAccess {
 }
 
 type MediaFields {
+  fullUrl: MediaFields_fullUrl
   updatedAt: MediaFields_updatedAt
   createdAt: MediaFields_createdAt
   url: MediaFields_url
@@ -1683,6 +2180,29 @@ type MediaFields {
   height: MediaFields_height
   focalX: MediaFields_focalX
   focalY: MediaFields_focalY
+}
+
+type MediaFields_fullUrl {
+  create: MediaFields_fullUrl_Create
+  read: MediaFields_fullUrl_Read
+  update: MediaFields_fullUrl_Update
+  delete: MediaFields_fullUrl_Delete
+}
+
+type MediaFields_fullUrl_Create {
+  permission: Boolean!
+}
+
+type MediaFields_fullUrl_Read {
+  permission: Boolean!
+}
+
+type MediaFields_fullUrl_Update {
+  permission: Boolean!
+}
+
+type MediaFields_fullUrl_Delete {
+  permission: Boolean!
 }
 
 type MediaFields_updatedAt {
@@ -2219,6 +2739,249 @@ type PayloadPreferencesDeleteAccess {
   where: JSONObject
 }
 
+type headerAccess {
+  fields: HeaderFields
+  read: HeaderReadAccess
+  update: HeaderUpdateAccess
+}
+
+type HeaderFields {
+  phone: HeaderFields_phone
+  address: HeaderFields_address
+  facebookLink: HeaderFields_facebookLink
+  updatedAt: HeaderFields_updatedAt
+  createdAt: HeaderFields_createdAt
+}
+
+type HeaderFields_phone {
+  create: HeaderFields_phone_Create
+  read: HeaderFields_phone_Read
+  update: HeaderFields_phone_Update
+  delete: HeaderFields_phone_Delete
+  fields: HeaderFields_phone_Fields
+}
+
+type HeaderFields_phone_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_Fields {
+  label: HeaderFields_phone_label
+  value: HeaderFields_phone_value
+}
+
+type HeaderFields_phone_label {
+  create: HeaderFields_phone_label_Create
+  read: HeaderFields_phone_label_Read
+  update: HeaderFields_phone_label_Update
+  delete: HeaderFields_phone_label_Delete
+}
+
+type HeaderFields_phone_label_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_label_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_label_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_value {
+  create: HeaderFields_phone_value_Create
+  read: HeaderFields_phone_value_Read
+  update: HeaderFields_phone_value_Update
+  delete: HeaderFields_phone_value_Delete
+}
+
+type HeaderFields_phone_value_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_value_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_value_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_phone_value_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_address {
+  create: HeaderFields_address_Create
+  read: HeaderFields_address_Read
+  update: HeaderFields_address_Update
+  delete: HeaderFields_address_Delete
+  fields: HeaderFields_address_Fields
+}
+
+type HeaderFields_address_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_address_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_address_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_address_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_address_Fields {
+  label: HeaderFields_address_label
+  value: HeaderFields_address_value
+}
+
+type HeaderFields_address_label {
+  create: HeaderFields_address_label_Create
+  read: HeaderFields_address_label_Read
+  update: HeaderFields_address_label_Update
+  delete: HeaderFields_address_label_Delete
+}
+
+type HeaderFields_address_label_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_address_label_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_address_label_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_address_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_address_value {
+  create: HeaderFields_address_value_Create
+  read: HeaderFields_address_value_Read
+  update: HeaderFields_address_value_Update
+  delete: HeaderFields_address_value_Delete
+}
+
+type HeaderFields_address_value_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_address_value_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_address_value_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_address_value_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_facebookLink {
+  create: HeaderFields_facebookLink_Create
+  read: HeaderFields_facebookLink_Read
+  update: HeaderFields_facebookLink_Update
+  delete: HeaderFields_facebookLink_Delete
+}
+
+type HeaderFields_facebookLink_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_facebookLink_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_facebookLink_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_facebookLink_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_updatedAt {
+  create: HeaderFields_updatedAt_Create
+  read: HeaderFields_updatedAt_Read
+  update: HeaderFields_updatedAt_Update
+  delete: HeaderFields_updatedAt_Delete
+}
+
+type HeaderFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_createdAt {
+  create: HeaderFields_createdAt_Create
+  read: HeaderFields_createdAt_Read
+  update: HeaderFields_createdAt_Update
+  delete: HeaderFields_createdAt_Delete
+}
+
+type HeaderFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type HeaderReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type HeaderUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createPage(data: mutationPageInput!): Page
   updatePage(id: String!, autosave: Boolean, data: mutationPageUpdateInput!): Page
@@ -2239,6 +3002,7 @@ type Mutation {
   createPayloadPreference(data: mutationPayloadPreferenceInput!): PayloadPreference
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
+  updateHeader(data: mutationHeaderInput!, draft: Boolean): Header
 }
 
 input mutationPageInput {
@@ -2258,6 +3022,7 @@ input mutationPageUpdateInput {
 }
 
 input mutationMediaInput {
+  fullUrl: String
   updatedAt: String
   createdAt: String
   url: String
@@ -2271,6 +3036,7 @@ input mutationMediaInput {
 }
 
 input mutationMediaUpdateInput {
+  fullUrl: String
   updatedAt: String
   createdAt: String
   url: String
@@ -2364,4 +3130,22 @@ input PayloadPreferenceUpdate_UserRelationshipInput {
 
 enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
   users
+}
+
+input mutationHeaderInput {
+  phone: mutationHeader_PhoneInput!
+  address: mutationHeader_AddressInput!
+  facebookLink: String!
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationHeader_PhoneInput {
+  label: String!
+  value: String!
+}
+
+input mutationHeader_AddressInput {
+  label: String!
+  value: String!
 }

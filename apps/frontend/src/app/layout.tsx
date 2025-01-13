@@ -4,6 +4,8 @@ import "./globals.scss";
 
 import { Next13NProgress } from "nextjs13-progress";
 
+import Header from "@/components/Header/Header";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Header/>
         <main>
           {children}
         </main>

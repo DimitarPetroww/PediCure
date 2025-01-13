@@ -1,9 +1,9 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloError, InMemoryCache } from "@apollo/client";
 
-export interface ApolloGraphQLError {
-    message: string;
-    path?: string[];
-    extensions?: Record<string, any>
+export interface GraphQLResponse<D> {
+    data: D
+    loading: boolean
+    error: ApolloError | undefined
 }
 
 const client = new ApolloClient({
