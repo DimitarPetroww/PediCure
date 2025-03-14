@@ -22,14 +22,43 @@ export interface Block {
     __typename: string;
 }
 
-export interface ButtonsBlock extends Block {
-    button: ButtonField;
-}
-
 export interface BannerBlock extends Block {
     backgroundImage: Media;
     mobileBackgroundImage: Media;
     heading: RichText[];
     subheading: RichText[];
     button: ButtonField;
+}
+
+export interface AboutBlock extends Block {
+    title: string;
+    images: Array<{ image: Media, alt?: string }>;
+    paragraph: string;
+}
+
+export interface ServicesBlock extends Block {
+    title: string;
+    services: Array<{
+        image: Media;
+        heading: string;
+        paragraph: string;
+    }>
+}
+
+export interface WhyChooseUsBlock extends Block {
+    title: string;
+    paragraph: string;
+    carouselImages: Array<{ image: Media }>;
+}
+
+export interface PricelistBlock extends Block {
+    backgroundImage?: Media;
+    title: string;
+    pricelists: Array<{
+        serviceGroup: string;
+        services: Array<{
+            serviceName: string;
+            servicePrice: string;
+        }>
+    }>;
 }

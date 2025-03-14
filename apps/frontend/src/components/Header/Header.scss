@@ -6,6 +6,8 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
 
     a {
         color: inherit;
@@ -26,7 +28,6 @@
         display: flex;
         gap: 5px;
         transition: color 0.3s;
-        font-size: 14px;
         letter-spacing: 0.3px;
 
         &:hover {

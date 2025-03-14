@@ -1,7 +1,10 @@
 import { CollectionConfig } from "payload/types";
 
 import Banner from "../blocks/Banner";
-import Buttons from "../blocks/Buttons";
+import About from "../blocks/About";
+import Services from "../blocks/Services";
+import WhyChooseUs from "../blocks/WhyChooseUs";
+import Pricelist from "../blocks/Pricelist";
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -20,7 +23,7 @@ const Pages: CollectionConfig = {
     {
       name: 'blocks',
       type: 'blocks',
-      blocks: [Banner, Buttons],
+      blocks: [Banner, About, Services, WhyChooseUs, Pricelist],
     },
   ],
   access: {

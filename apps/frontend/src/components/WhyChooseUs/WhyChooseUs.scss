@@ -1,0 +1,42 @@
+@import '../../scss/variables.scss';
+@import '../../scss/typography.scss';
+@import '../../scss/mixins.scss';
+
+.whyChooseUs {
+    @include block;
+
+    &__title {
+        color: $color-primary;
+        margin-bottom: 30px;
+    }
+
+    &__card {
+        @include card;
+        padding: 50px;
+        display: flex;
+        gap: 50px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        &__images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            img {
+                cursor: pointer;
+                width: 300px;
+                height: 50vh;
+                flex: 0 0 28%;
+                border-radius: 8px;
+                transition: 0.5s ease-in-out;
+                overflow: hidden;
+                object-fit: cover;
+
+                &:hover {
+                    flex: 0 0 33%;
+                }
+            }
+        }
+    }
+}

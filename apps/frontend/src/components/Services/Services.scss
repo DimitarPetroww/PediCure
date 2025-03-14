@@ -1,0 +1,43 @@
+@import '../../scss/variables.scss';
+@import '../../scss/typography.scss';
+@import '../../scss/mixins.scss';
+
+.services {
+    min-height: 30vh;
+    @include block;
+
+    &__title {
+        @include title;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__card {
+        @include card;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px;
+        text-align: center;
+        gap: 20px;
+
+        &__paragraph {
+            color: $color-gray;
+            font-size: $font-size-s;
+            font-weight: 500;
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        &:last-of-type {
+            grid-column: span 2;
+        }
+    }
+}

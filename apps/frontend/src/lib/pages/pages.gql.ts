@@ -26,6 +26,52 @@ export const GET_PAGE = gql`
                             customClass
                         }
                     }
+                    ... on About { 
+                        id
+                        title
+                        images {
+                            image {
+                                url
+                                fullUrl
+                            }
+                            altText
+                        }
+                        paragraph
+                    }
+                    ... on Services {
+                        id
+                        title
+                        services { 
+                            image {
+                                fullUrl
+                            }
+                            heading
+                            paragraph
+                        }
+                    }
+                    ... on WhyChooseUs {
+                        id
+                        title
+                        paragraph
+                        carouselImages {
+                            image {
+                                fullUrl
+                            }
+                        }
+                    }
+                    ... on Pricelist {
+                        backgroundImage {
+                            fullUrl
+                        }
+                        title
+                        pricelists {
+                            serviceGroup
+                            services {
+                                serviceName
+                                servicePrice
+                            }
+                        }
+                    }
                 }
             }
         }

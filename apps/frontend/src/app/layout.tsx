@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Marmelad, Pacifico } from "next/font/google";
 import "./globals.scss";
 
 import { Next13NProgress } from "nextjs13-progress";
 
 import Header from "@/components/Header/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const marmelad = Marmelad({ subsets: ['cyrillic'], weight: '400' });
+const pacifico = Pacifico({ subsets: ['cyrillic'], weight: '400', variable: '--font-secondary' })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,8 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header/>
+      <body className={`${marmelad.className} ${pacifico.variable}`}>
+        <Header />
         <main>
           {children}
         </main>

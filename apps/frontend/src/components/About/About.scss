@@ -1,0 +1,42 @@
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
+
+.about {
+    @include block;
+    @include card;
+    display: flex;
+    padding: 50px;
+    gap: 50px;
+
+    &__title {
+        color: $color-primary;
+    }
+
+    &__images {
+        display: flex;
+        gap: 30px;
+
+        img {
+            height: 300px;
+            width: 180px;
+            object-fit: cover;
+            border-radius: 100px;
+
+            &:first-of-type {
+                margin-top: 60px;
+            }
+
+            &:nth-of-type(2) {
+                margin-top: 20px;
+            }
+
+            &:last-of-type {
+                margin-top: -20px;
+            }
+        }
+    }
+
+    &__paragraph {
+        margin-top: 30px;
+    }
+}

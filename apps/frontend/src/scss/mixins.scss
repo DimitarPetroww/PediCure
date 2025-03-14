@@ -1,0 +1,17 @@
+@import './variables.scss';
+
+@mixin block {
+    width: 100%;
+    max-width: 90vw;
+    margin: 40px auto;
+}
+
+@mixin title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+@mixin card {
+    background-color: $color-light-black;
+    border-radius: 20px;
+}

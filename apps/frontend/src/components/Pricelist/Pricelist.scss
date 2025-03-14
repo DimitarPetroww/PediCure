@@ -1,0 +1,54 @@
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
+
+.pricelist {
+    @include block;
+
+    &__grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    &__meta {
+        background-size: cover;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__title {
+            mix-blend-mode: difference;
+        }
+    }
+
+    &__card {
+        @include card;
+        padding: 50px;
+
+        &__title {
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        &__list {
+            &__item {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 10px;
+                border-bottom: 1px dotted rgba(255, 255, 255, 0.6);
+
+                &:not(:last-of-type) {
+                    margin-bottom: 20px;
+                }
+
+                &__price {
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}

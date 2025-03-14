@@ -8,8 +8,11 @@ export default async function HomePage() {
 
   return (
     <div>
-      {data[0].blocks?.map(block => 
-        <Block {...block} key={block?.id}/>
+      {data[0].blocks?.map((block, i) =>
+        <>
+          <Block {...block} key={block?.id} />
+          {i !== 0 && i !== data[0].blocks.length - 1 && <div className="break-line"></div>}
+        </>
       )}
     </div>
   );

@@ -1,5 +1,16 @@
+@import '../scss/typography.scss';
+@import '../scss/variables.scss';
+@import '../scss/components.scss';
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+    line-height: $line-height;
+    background-color: $color-black;
+    color: $color-white;
 }

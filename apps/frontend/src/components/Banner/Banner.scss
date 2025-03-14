@@ -3,19 +3,32 @@
 .banner {
     height: 100vh;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     padding: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     &__heading {
-        font-size: 100px;
-        color: $color-white;
+        color: white;
+        font-size: 6rem;
+        mix-blend-mode: difference;
+        user-select: none;
     }
 
-    &__subheading {
-        font-size: 80px;
-        color: $color-primary;
+    &__arrow {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-image: url('/hero-arrow.gif');
+        opacity: 0.7;
+        top: 90%;
+        transform: translateX(-50%);
+        left: 50%;
     }
 }

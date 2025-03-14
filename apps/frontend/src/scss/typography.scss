@@ -1,0 +1,49 @@
+@import './responive.scss';
+
+:root {
+    font-size: 16px;
+}
+
+$line-height: 1.6;
+$heading-line-height: 1.4;
+
+$font-size-s: 0.875em;
+$font-size-md: 1em;
+$font-size-l: 1.25em;
+$font-size-xl: 1.5em;
+
+$heading-sizes: (
+    h1: (desktop: 3.5em,
+        tablet: 3.25em,
+        mobile: 3em),
+    h2: (desktop: 3em,
+        tablet: 2.75em,
+        mobile: 2.5em),
+    h3: (desktop: 2.75em,
+        tablet: 2.5em,
+        mobile: 2.25em),
+    h4: (desktop: 2.5em,
+        tablet: 2.25em,
+        mobile: 2em),
+    h5: (desktop: 2.25em,
+        tablet: 2em,
+        mobile: 1.875em),
+    h6: (desktop: 1.25em,
+        tablet: 1em,
+        mobile: 0.875em)
+);
+
+@each $heading, $sizes in $heading-sizes {
+    #{$heading} {
+        font-size: map-get($sizes, mobile);
+        line-height: $heading-line-height;
+
+        @include respond-to('tablet') {
+            font-size: map-get($sizes, tablet);
+        }
+
+        @include respond-to('desktop') {
+            font-size: map-get($sizes, desktop);
+        }
+    }
+}
